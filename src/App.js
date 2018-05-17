@@ -15,7 +15,9 @@ app.set('port', process.env.PORT || 7000)
 
 const ncSchema = require('./schema')
 
-//Set GraphQL as middleware
+// Set GraphQL as middleware
+// We  use the context to connect to the db and get the req data.
+// Each query or mutation has a type, that is the type of respond to the request.
 app.use('/graphql', cors(), (req, res) => {
     graphqlHTTP({
         schema: ncSchema,
