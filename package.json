@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon src/App.js",
-    "standard": "standard",
-    "standard-fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -30,6 +28,5 @@
   },
   "devDependencies": {
     "nodemon": "^1.17.4",
-    "standard": "^11.0.1"
   }
 }
