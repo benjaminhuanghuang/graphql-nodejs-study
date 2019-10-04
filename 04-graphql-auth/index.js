@@ -41,16 +41,6 @@ var root = {
 }
 
 const app = express();
-const middleware = (req, res, next) =>{
-  if(req.rul.indexOf('/graphql') !== -1 && req.headers.cookie.index('auth') === -1){
-    res.send(JSON.stringify({
-      error:"Auth failed."
-    }));
-    return
-  }
-  next();
-}
-app.use(middleware);
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
