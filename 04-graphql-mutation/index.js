@@ -8,9 +8,14 @@ const PORT = 4000;
 // Define a data type
 var schema = buildSchema(
   `
-  type Query {
-    getClassmates(classNo: Int!): [String]
-    account(name: String): Account
+  input AccountInput {
+    name: String
+    age: Int
+  }
+
+  type Mutation {
+    createAccount(input: AccountInput): Account
+    updateAccount(id: ID!, input AccountInput): Account
   }
 
   type Account {
@@ -20,20 +25,18 @@ var schema = buildSchema(
   `
 )
 
+const fackDb ={};
+
 // The root provides a resolver funciton for each query
 var root = {
-  getClassmates: ({classNo}) => {
-    const obj ={
-      1: ["a", "b", 'c'],
-      2: ["a2", "b2", 'c2'],
-    }
-    return obj[classNo];
+  createAccount: ({input}) => {
+    fackDb[input.name] = input;
+    return fackDb[input.name]
   },
-  account: ({name}) =>{
-    return {
-      name: name,
-      age: 11111
-    }
+  updateAccount: ({id, input}) =>{
+    const updatedAccount = Object.assign({}, fackDb[id], input);
+    fackDb[id] = updatedAccount;
+    return updatedAccount;
   }
 }
 
