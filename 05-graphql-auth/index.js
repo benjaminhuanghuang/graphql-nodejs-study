@@ -25,22 +25,34 @@ var schema = buildSchema(
   `
 )
 
-const fackDb ={};
+const fakeDb ={};
 
 // The root provides a resolver funciton for each query
 var root = {
   createAccount: ({input}) => {
-    fackDb[input.name] = input;
-    return fackDb[input.name]
+    fakeDb[input.name] = input;
+    return fakeDb[input.name]
   },
   updateAccount: ({id, input}) =>{
-    const updatedAccount = Object.assign({}, fackDb[id], input);
-    fackDb[id] = updatedAccount;
+    const updatedAccount = Object.assign({}, fakeDb[id], input);
+    fakeDb[id] = updatedAccount;
     return updatedAccount;
   }
 }
 
 const app = express();
+
+const middleware = (req, res, next) =>{
+  if(req.rul.indexOf('/graphql') !== -1 && req.headers.cookie.index('auth') === -1){
+    res.send(JSON.stringify({
+      error:"Auth failed."
+    }));
+    return
+  }
+  next();
+}
+app.use(middleware);
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
