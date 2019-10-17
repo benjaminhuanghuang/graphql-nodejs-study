@@ -27,7 +27,12 @@ const fakeDb ={};
 // The root provides a resolver funciton for each query
 const root = {
   accounts: ()=> {
-    return fakeDb;
+    var arr =[]
+    for(const key in fakeDb)
+    { 
+      arr.push(fakeDb[key])
+    }
+    return arr;
   },
 
   createAccount: ({input}) => {
@@ -57,10 +62,12 @@ app.listen(PORT, () => {
 /*
   Open http://localhost:4000/graphql
   
-  // query
+  // mutation
   {
-    getClassmates(classNo:2)
-    account(name:"asdfasdf") {
+    createAccount(input:{
+      name: "Alen"
+      age: 12
+    }){
       name
       age
     }
