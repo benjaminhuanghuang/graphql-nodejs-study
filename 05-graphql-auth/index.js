@@ -43,7 +43,7 @@ var root = {
 const app = express();
 
 const middleware = (req, res, next) =>{
-  if(req.rul.indexOf('/graphql') !== -1 && req.headers.cookie.index('auth') === -1){
+  if(req.rul.index('/graphql') !== -1 && req.headers.cookie.index('auth') === -1){
     res.send(JSON.stringify({
       error:"Auth failed."
     }));

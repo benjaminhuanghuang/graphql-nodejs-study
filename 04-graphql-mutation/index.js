@@ -62,7 +62,7 @@ app.listen(PORT, () => {
 /*
   Open http://localhost:4000/graphql
   
-  // mutation
+  mutation
   {
     createAccount(input:{
       name: "Alen"
@@ -73,18 +73,9 @@ app.listen(PORT, () => {
     }
   }
 
-  // result
-  {
-    "data": {
-      "getClassmates": [
-        "a2",
-        "b2",
-        "c2"
-      ],
-      "account": {
-        "name": "asdfasdf",
-        "age": 11111
-      }
+  query{
+    accounts{
+      name
     }
   }
 */
