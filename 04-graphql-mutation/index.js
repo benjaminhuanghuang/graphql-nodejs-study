@@ -3,31 +3,24 @@ const graphqlHTTP = require("express-graphql");
 const { buildSchema } = require('graphql');
 const PORT = 4000;
 
-// Construct a schema using GraphQL Schema Language
-// Define a Query "hello", it returns String
 // Define a data type
-var schema = buildSchema(
-  `
+const schema = buildSchema(`
   input AccountInput {
     name: String
     age: Int
   }
-
-  type Mutation {
-    createAccount(input: AccountInput): Account
-    updateAccount(id: ID!, input AccountInput): Account
-  }
-
   type Account {
     name: String
     age: Int
   }
-
+  type Mutation {
+    createAccount(input: AccountInput): Account
+    updateAccount(id: ID!, input: AccountInput): Account
+  }
   type Query {
     accounts: [Account]
   }
-  `
-)
+`)
 
 const fakeDb ={};
 
