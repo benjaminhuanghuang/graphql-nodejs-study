@@ -1,10 +1,11 @@
 {
-  "name": "graphql-nodejs-first",
+  "name": "graphql-nodejs-study",
   "version": "1.0.0",
-  "description": "- Create your first GraphQL app with nodejs and set an auth middleware     - https://itnext.io/create-your-first-graphql-app-and-set-an-auth-middleware-2dd841f714c2",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon src/App.js"
+    "server": "babel-node server.js",
+    "start": "nodemon ./01-express-graphql/index --exec babel-node -e js"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,13 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
-    "graphql": "^14.5.8",
+    "graphql": "^14.7.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.12.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.6"
   }
 }

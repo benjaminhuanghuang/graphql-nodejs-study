@@ -1,5 +1,5 @@
-const express = require("express");
-const PORT = 4000
+import express from "express";
+const PORT = 8964
 
 const app = express();
 

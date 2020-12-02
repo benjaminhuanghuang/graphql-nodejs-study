@@ -1,22 +1,42 @@
-const express = require('express')
-const graphqlHTTP = require('express-graphql')
-const graphql = require('graphql')
+import express from 'express'
+import graphqlHTTP from 'express-graphql'
+import {buildSchema} from 'graphql'
     
-const QueryRoot = new graphql.GraphQLObjectType({
-  name: 'Query',
-  fields: () => ({
-    hello: {
-      type: graphql.GraphQLString,
-      resolve: () => "Hello world!"
-    }
-  })
-})
-    
-const schema = new graphql.GraphQLSchema({ query: QueryRoot });
-    
+const schema = buildSchema(`
+  type Query {
+    hello: String
+    friend: Friend
+  } 
+
+  type Friend {
+    id: ID
+    name: String
+  }
+  `
+)
+// resolver
+const root = { 
+  hello: ()=>"Hi, GraphQL",
+  friend: () => {return { id:1111, ddd:"ben"}}
+}   
+
 const app = express();
-app.use('/api', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
   schema: schema,
-  graphiql: true,
+  rootValue: root,
+  graphiql: true,   // enable UI insterface
 }));
-app.listen(4000);
+app.listen(8964);
+
+/* Test
+
+query {
+  hello
+}
+
+query {
+	friend {
+	  id
+	}
+}
+*/
