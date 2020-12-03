@@ -11,6 +11,16 @@ add npm script
 
 ## express + express-graphql
 ```
-  npm i express express-graphql graphql
+  npm i express express-graphql graphql graphql-tools
 ```
 
+
+## Mongo
+```
+  npm i mongoose
+```
+
+## SQlite
+```
+npm i sqlite3 sequelize casual
+```
