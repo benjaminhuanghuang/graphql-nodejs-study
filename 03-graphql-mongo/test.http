@@ -1,0 +1,7 @@
+
+POST http://localhost:8964/graphql
+content-type: application/json
+
+{
+  "query":"mutation {deleteFriend(id:\"xxx\")}"
+}

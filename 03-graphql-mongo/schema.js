@@ -3,8 +3,6 @@ import {resolvers} from './resolvers'
 
 const typeDefs = `
   type Query {
-    hello: String
-    friend: Friend
     getFriend(id:ID):Friend
   } 
 
@@ -25,6 +23,8 @@ const typeDefs = `
 
   type Mutation {
     createFriend(input: FriendInput): Friend
+    updateFriend(input: FriendInput): Friend
+    deleteFriend(id: ID!): String
   }
 `
 const schema = makeExecutableSchema({typeDefs, resolvers})
