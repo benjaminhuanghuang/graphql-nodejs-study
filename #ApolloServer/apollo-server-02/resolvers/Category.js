@@ -7,24 +7,20 @@ exports.Category = {
     const products = context.products;
 
     const categoryId = parent.id;
-    const product = products.find((p) => p.categoryId === categoryId);
-    return product;
+    return products.filter((p) => p.categoryId === categoryId);
   },
 
   products: ({ id: categoryId }, { filter }, { products }) => {
-    const categoryProducts = products.filter(
-      (product) => product.categoryId === categoryId
-    );
+    const categoryProducts = products.filter((product) => product.categoryId === categoryId);
     let filteredCategoryProducts = categoryProducts;
 
     if (filter) {
       if (filter.onSale === true) {
-        filteredCategoryProducts = filteredCategoryProducts.filter(
-          (product) => {
-            return product.onSale;
-          }
-        );
+        filteredCategoryProducts = filteredCategoryProducts.filter((product) => {
+          return product.onSale;
+        });
       }
     }
-  }
+    return filteredCategoryProducts;
+  },
 };
