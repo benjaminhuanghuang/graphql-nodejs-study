@@ -2,8 +2,6 @@ import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { UpdateResult } from "typeorm";
 import { Task } from "../entities/Task";
 
-
-
 @Resolver()
 export class TaskResolver {
   @Query(() => String)
@@ -23,7 +21,7 @@ export class TaskResolver {
   ): Promise<Task | undefined> {
     return Task.findOne({ id });
   }
-
+ 
   @Mutation(() => Task)
   createTask(
     @Arg("title", () => String)
