@@ -1,7 +1,6 @@
 
 
-## Setup
-
+## Step 1 — Creating the Node.js Project
 ```
   npm init -y
 
@@ -12,54 +11,66 @@
   # express
   npm i express 
   npm i @types/express -D 
+```
 
-
-  # graphql
+## Setup 2 Setup graphql
+```
   npm i graphql apollo-server
+```
 
 
-  # prisma
+
+## Step 3 — Setting Up Prisma with PostgreSQL
+Install primsa
+```
   npm i prisma -D
   npm i @prisma/client
 ```
 
-##  Setup PostgreSql on Heroku
+Setup PostgreSql on Heroku
 ```
   1. Create new app
   2. Resource -> Add-ons Select Heroku Posgres
   3. get the crednetials
 ```
 
+Creating and Migrating the Database with Prisma
 
-## Prisma operation
-init Prisma
+1. init Prisma
 ```
   npx prisma init
 ```
 
-Create db    
+2. create scheme in /prisma/schema.prisma
+
+
+3. Create db    
 ```
 npx prisma db push  
 ```
+
+
+migration, giving a name
+```
+  npx prisma migrate dev --name init
+
+  npx prisma migrate dev --name add-post
+```
+foler `migrations` would be created, 每次执行 migrate， prisma 都会更新 prisma client，以便使用最新生成的数据类型
+
 
 Open prisma GUI and add data
 ```
 npx prisma studio
 ```
 
-init db, migrate
-```
- 
-  npx prisma migrate dev --name init
-
-  npx prisma migrate dev --name add_post_table
-```
 
 Seed data
 ```  
   npx ts-node ./prisma/seed.ts
 ```
 
+## 
 
 
 
